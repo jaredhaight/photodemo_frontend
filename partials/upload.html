@@ -1,0 +1,22 @@
+<script src="/patjs/js/dropzone3.js"></script>
+<div ng-controller="photoListCtrl">
+  <div id="alertWrap" ng-show="alert" class="row">
+    <div class="large-12 columns">
+        <div data-alert class="alert-box alert">
+            {{ alertMessage }}
+            <a class="close" ng-click="alertClear()">&times;</a>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div id="dropzone" class="large-12 columns">
+      <form action="http://127.0.0.1:8000/api/photos" class="dropzone">
+        <div id="photoUploadBox">
+          Upload yo files.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+    

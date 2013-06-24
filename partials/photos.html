@@ -1,0 +1,27 @@
+<div ng-controller="photoListCtrl">
+  <div class="pure-g-r">
+    <div class="pure-u-1">
+      <form id="photoDrop" ng-upload method="post" class="pure-form" action="http://127.0.0.1:8001/api/photos/?format=json&response_type=text_html" enctype="multipart/form-data">
+        <fieldset>
+           <label>Photo</label>
+           <input type="file" name="image" />
+          <button type="submit" class="pure-button primary" upload-submit="uploadComplete(content, completed)">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="pure-g-r">
+    <div id="photoList" class="pure-u-1">
+      <span ng-repeat="photo in photos.results | orderBy: '-updated'">
+          <a ng-click=select(photo)><img ng-class="{'selected': photo.selected}" ng-repeat="thumbnail in photo.crops|filter:desc='thumbnail'" ng-src="{{ thumbnail.crop_url }}"></a>
+      </span>
+    </div>
+  </div>
+  <div class="pure-g-r" ng-show="photoGroup.length > 0">
+    <div id="actionBar" class="pure-u-1">
+      <button ng-click=deleteImages(photoGroup) class="pure-button warning">Delete Images</button>
+      <button class="pure-button secondary">Add to Gallery</button>
+      <button class="pure-button secondary">Modify Properties</button>
+    </div>
+</div>
+<script src="/static/js/dropzone3.js"></script>
