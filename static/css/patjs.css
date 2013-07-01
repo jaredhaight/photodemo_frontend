@@ -1,6 +1,9 @@
 body {
-    max-width: 1280px;
     margin: 0 auto;
+}
+
+p {
+    color: #585858;
 }
 
 /* UI Stuff */
@@ -20,14 +23,24 @@ button.warning {
 }
 
 /* Photo page stuff */
-#photoDrop {
-    text-align: center;
+#photoFormWrap {
     height: 60px;
     padding-top: 10px;
+    text-align: center;
+    margin: 0 auto;
 }
+
+#photoDrop {
+    display: inline-block;
+}
+
 #photoList {
     margin: 0 auto;
     text-align: center;
+}
+
+#photoList img {
+    width: 350px;
 }
 
 .selected {
@@ -36,6 +49,7 @@ button.warning {
     border-style: solid;
 }
 
+
 #actionBar {
     position: fixed;
     bottom: 0;
@@ -43,29 +57,80 @@ button.warning {
     width: 100%;
     padding: 15px;
     left: 0;
-    background: black;
+    background: #333;
+}
+
+#actionText {
+    float: right;
+    color: white;
+    padding-top: 10px;
+    padding-right: 25px;
 }
 
 /* Photo View stuff */
-.imageInfoPush{
-    position: relative;
-}
-.imageInfo {
-    height: 60px;
-    text-align: right;
-    position: absolute;
-    bottom: 4px;
-    color: #fff;
-    width: 100%;
-    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 54%, rgba(0,0,0,0.8) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(54%,rgba(0,0,0,0.8)), color-stop(100%,rgba(0,0,0,0.8))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 54%,rgba(0,0,0,0.8) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 54%,rgba(0,0,0,0.8) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 54%,rgba(0,0,0,0.8) 100%); /* IE10+ */
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.8) 54%,rgba(0,0,0,0.8) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); /* IE6-9 */
+#photoBody {
+    text-align: center;
+    padding: 8px;
 }
 
-.imageInfo p {
+#photoBody img {
+    max-height: 1200px;
+}
+
+#photoBodyBG {
+    background: #000000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 25%;
+    z-index: -2;
+}
+
+.photoInfoSection {
     padding: 10px;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #ccc;
+}
+
+.photoTitle {
+    font-weight: 600;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.photoExif {
+    margin-top: 10px;
+}
+
+.photoExif p {
+    margin: 0;
+}
+
+.photoExif p:last-child {
+    margin-bottom: 10px;
+}
+
+#photoButtons {
+    padding: 10px;
+    padding-top:;
+}
+
+#photoButtons button {
+    display: inline;
+}
+
+div.aloha-toolbar {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    #photoBodyBG {
+        position: static;
+    }
+
+    #photoBody {
+        background: #000000;
+    }
 }

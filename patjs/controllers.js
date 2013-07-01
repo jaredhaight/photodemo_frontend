@@ -78,6 +78,28 @@ function photoListCtrl($scope, photoClient, $routeParams, $http, $cookieStore, $
             });
         };
     };
+
+    $scope.editMode = false;
+    $scope.photoLink= "href=/photo/{{photo.id}}";
+
+    $scope.enableBulkEdit = function() {
+        if ($scope.editMode) {
+            $scope.editMode = false;
+            $scope.photoLink= '"$location.path('/photo/' + photo.id)"';
+
+        } else {
+            $scope.editMode = true;
+            $scope.photoLink = '"ng-click=select(photo)"';
+        }
+    }
+
+    $scope.photoClick = function(photo){
+        if($scope.editMode) {
+            $scope.select(photo);
+        } else {
+            window.location = '/#/photo/'+photo.id;
+        };
+    };
 };
 
 function photoCtrl($scope, photoClient, $routeParams, $http, $cookieStore, $cookies) {
@@ -87,7 +109,7 @@ function photoCtrl($scope, photoClient, $routeParams, $http, $cookieStore, $cook
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     */
     delete $http.defaults.headers.common['X-Requested-With'];
-    $http.defaults.headers.common['Authorization'] = 'Token aba849ec49ba7be993d1d0d77a54064ca493e58a';
+    $http.defaults.headers.common['Authorization'] = 'Token 06e1d3ec452a08021668531fd20f2ea98267d08a';
     $scope.photo = photoClient.get({photoID: $routeParams.photoID});
     //$scope.rows = $scope.photos.results.split("", 3);
 }

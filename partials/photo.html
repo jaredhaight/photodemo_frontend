@@ -1,10 +1,53 @@
 <div ng-controller="photoListCtrl">
   <div class="pure-g-r">
-    <div class="pure-u-1 imageInfoPush">
-      <img ng-src={{photo.full_photo}}>
-      <aside class="pure-u-1 imageInfo">
-      <p>{{ photo.title }}</p>
-      </aside>
+  	<div class="pure-u-3-4">
+  		<div id="photoBody" data-id="{{photo.id}}" ng-repeat="display in photo.crops|filter:desc='display'">
+  			<img ng-src="{{ display.crop_url }}"></img>
+  		</div>
+  		<div id="photoBodyBG"></div>
+  	</div>
+    <div class="pure-u-1-4">
+      <div class="photoText photoInfoSection">
+	    <h1 id="title" class="photoTitle editable" ng-bind-html-unsafe="photo.title"></h1>
+	    <p id="desc" class="photoDesc editable" ng-bind-html-unsafe="photo.desc"></p>
+      </div>
+      <div class="photoTags photoInfoSection editable">
+      	<p>This photos is in the following collections: Hiking, Mountains, Jess, Doughton Park
+      </div>
+      <div class="photoExif photoInfoSection">
+      	<p class="taken">Taken on {{ photo.exif_date_taken | date:'MMMM dd yyyy' }} at {{ photo.exif_date_taken | date: 'HH:mm' }}</p>
+      	<p class="shutter">Shutter: {{ photo.exif_shutter }}</p>
+      	<p class="apurture">Aperture: {{ photo.exif_aperture }}</p>
+      	<p class="focal">Focal Length: {{ photo.exif_focal }}</p>
+      	<p class="iso">ISO: {{ photo.exif_iso }}</p>
+      </div>
+      <div id="photoButtons">
+      	<button class="pure-u-1 pure-button secondary">Download</button>
+      	<button class="pure-button warning">Edit</button>
     </div>
   </div>
 </div>
+<!-- load the jQuery and require.js libraries -->
+<script>
+Aloha = {};
+Aloha.settings = { sidebar: { disabled: true },  };
+</script>
+<script type="text/javascript" src="/static/js/aloha/lib/require.js"></script>
+
+<!-- load the Aloha Editor core and some plugins -->
+<script src="/static/js/aloha/lib/aloha.js"
+                     data-aloha-plugins=" common/format,
+                                          common/list,
+                                          common/link">
+</script>
+ <script src="/static/js/aloha/patAloha.js"></script>
+<!-- load the Aloha Editor CSS styles -->
+<link href="/static/js/aloha/css/aloha.css" rel="stylesheet" type="text/css" />
+
+<!-- make all elements with class="editable" editable with Aloha Editor -->
+<script type="text/javascript">
+       Aloha.ready( function() {
+              var $ = Aloha.jQuery;
+              $('.editable').aloha();
+       });
+</script>
